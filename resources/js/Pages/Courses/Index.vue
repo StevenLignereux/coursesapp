@@ -6,11 +6,12 @@
         <div class="py-6" v-for="course in this.courseList" v-bind:key="course.id">
             <div class="mx-8 bg-white rounded shadow p-3">
                 <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-400">Mise en ligne par {{ course.user.name }}</div>
                     <div class="text-4xl">{{ course.title }}</div>
-                    <div class="text-sm text-gray-400">25 épisodes</div>
+                    <div class="text-sm text-gray-400">{{ course.episodes_count }} épisodes</div>
                 </div>
                 <div class="text-sm text-gray-500">{{ course.description }}</div>
-                <a href="#" class="bg-indigo-500 text-white px-2 py-1 text-sm mt-3 rounded hover:bg-indigo-700 inline-block">Voir la formation</a>
+                <a :href="'course/' + course.id" class="bg-indigo-500 text-white px-2 py-1 text-sm mt-3 rounded hover:bg-indigo-700 inline-block">Voir la formation</a>
             </div>
         </div>
     </app-layout>
@@ -23,6 +24,8 @@ export default {
     components: {
         AppLayout
     },
+    
+    props: ['courses'],
 
     data() {
         return {
@@ -30,7 +33,6 @@ export default {
         }
     },
     
-    props: ['courses'],
 
     mounted(){
         console.log(this.courseList);
